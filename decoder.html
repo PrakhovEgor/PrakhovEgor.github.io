@@ -33,23 +33,35 @@
             }
         }
 
+        // Функция для корректного декодирования UTF-8 из Base64
+        function decodeBase64UTF8(str) {
+            // Декодируем Base64 в бинарную строку
+            const binaryString = atob(str);
+            // Преобразуем бинарную строку в массив байт
+            const bytes = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            // Декодируем массив байт как UTF-8
+            return new TextDecoder('utf-8').decode(bytes);
+        }
+
         // Декодировка Base64
         function decodeBase64() {
             const input = document.getElementById('base64Input').value.trim();
             const resultDiv = document.getElementById('result');
 
             if (!input) {
-                resultDiv.innerHTML = `<p>⚠️ <strong>Введите код!</strong></p>`;
+                resultDiv.innerHTML = `<p>⚠️ <strong>Введите шифр!</strong></p>`;
             } else {
                 try {
-                    // Для UTF-8
-const decoded = new TextDecoder('utf-8').decode(new Uint8Array([...atob(encodedString)].map(c => c.charCodeAt(0))));
+                    const decodedText = decodeBase64UTF8(input);
                     resultDiv.innerHTML = `
                         <p>✅ <strong>Результат:</strong></p>
                         <p><strong>${decodedText}</strong></p>
                     `;
                 } catch (e) {
-                    resultDiv.innerHTML = `<p>❌ <strong>Ошибка!</strong> Неверный Base64.</p>`;
+                    resultDiv.innerHTML = `<p>❌ <strong>Ошибка!</strong> Неверный Base64 или проблема с декодированием.</p>`;
                 }
             }
             resultDiv.classList.add('visible');
