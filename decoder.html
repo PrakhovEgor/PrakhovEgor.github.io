@@ -42,7 +42,8 @@
                 resultDiv.innerHTML = `<p>⚠️ <strong>Введите код!</strong></p>`;
             } else {
                 try {
-                    const decodedText = atob(input);
+                    // Для UTF-8
+const decoded = new TextDecoder('utf-8').decode(new Uint8Array([...atob(encodedString)].map(c => c.charCodeAt(0))));
                     resultDiv.innerHTML = `
                         <p>✅ <strong>Результат:</strong></p>
                         <p><strong>${decodedText}</strong></p>
