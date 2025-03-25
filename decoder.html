@@ -34,7 +34,7 @@
         }
 
         // Функция для корректного декодирования UTF-8 из Base64
-        function decodeBase64UTF8(str) {
+        function secret_funUTF8(str) {
             // Декодируем Base64 в бинарную строку
             const binaryString = atob(str);
             // Преобразуем бинарную строку в массив байт
@@ -48,20 +48,20 @@
 
         // Декодировка Base64
         function secret_fun() {
-            const input = document.getElementById('base64Input').value.trim();
+            const input = document.getElementById('secret_Input').value.trim();
             const resultDiv = document.getElementById('result');
 
             if (!input) {
                 resultDiv.innerHTML = `<p>⚠️ <strong>Введите шифр!</strong></p>`;
             } else {
                 try {
-                    const decodedText = decodeBase64UTF8(input);
+                    const decodedText = secret_funUTF8(input);
                     resultDiv.innerHTML = `
                         <p>✅ <strong>Результат:</strong></p>
                         <p><strong>${decodedText}</strong></p>
                     `;
                 } catch (e) {
-                    resultDiv.innerHTML = `<p>❌ <strong>Ошибка!</strong> Неверный Base64 или проблема с декодированием.</p>`;
+                    resultDiv.innerHTML = `<p>❌ <strong>Ошибка!</strong> Неверный шифр или проблема с декодированием.</p>`;
                 }
             }
             resultDiv.classList.add('visible');
