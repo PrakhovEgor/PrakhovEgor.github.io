@@ -33,9 +33,7 @@
             }
         }
 
-        // Функция для корректного декодирования UTF-8 из Base64
         function secret_funUTF8(str) {
-            // Декодируем Base64 в бинарную строку
             const binaryString = atob(str);
             // Преобразуем бинарную строку в массив байт
             const bytes = new Uint8Array(binaryString.length);
@@ -46,7 +44,6 @@
             return new TextDecoder('utf-8').decode(bytes);
         }
 
-        // Декодировка Base64
         function secret_fun() {
             const input = document.getElementById('secret_Input').value.trim();
             const resultDiv = document.getElementById('result');
