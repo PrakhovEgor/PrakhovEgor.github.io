@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космический дешифратор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="container">
+        <h1>🔮 Космический дешифратор 🔮</h1>
+        <p>Введите ключ, полученный из QR-кода:</p>
+        <input type="text" id="keyInput" placeholder="Введите код...">
+        <button onclick="checkKey()">Проверить</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Генерация звёзд
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Проверка ключа
+        function checkKey() {
+            const SECRET_KEY = "КОСМИЧЕСКИЙ42"; // Замените на свой ключ
+            const input = document.getElementById('keyInput').value.toUpperCase();
+            const resultDiv = document.getElementById('result');
+
+            if (input === SECRET_KEY) {
+                window.location.href = "decoder.html"; // Переход на вторую страницу
+            } else {
+                resultDiv.innerHTML = `<p>❌ <strong>Неверный ключ!</strong> Поищите другой :)</p>`;
+                resultDiv.classList.add('visible');
+            }
+        }
+
+        window.onload = createStars;
+    </script>
+</body>
+</html>

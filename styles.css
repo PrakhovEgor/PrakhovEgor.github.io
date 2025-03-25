@@ -1,0 +1,91 @@
+body {
+    background: #0a0a1a url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #00fffc;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(0, 0, 20, 0.8);
+    border: 2px solid #00fffc;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px #00fffc;
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    margin-top: 0;
+    text-shadow: 0 0 10px #00fffc;
+}
+
+input {
+    background: rgba(0, 10, 20, 0.7);
+    border: 1px solid #00fffc;
+    color: #00fffc;
+    padding: 10px;
+    font-size: 16px;
+    width: 80%;
+    margin: 10px 0;
+    font-family: 'Orbitron', sans-serif;
+}
+
+button {
+    background: #003366;
+    color: #00fffc;
+    border: 1px solid #00fffc;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #00fffc;
+    color: #003366;
+    box-shadow: 0 0 15px #00fffc;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    min-height: 50px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.visible {
+    opacity: 1 !important;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    100% { opacity: 1; }
+}

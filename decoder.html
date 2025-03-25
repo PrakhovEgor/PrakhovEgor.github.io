@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расшифровщик 3000</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="container">
+        <h1>🛸 Расшифровщик 3000 🛸</h1>
+        <p>Введите Base64-код для расшифровки:</p>
+        <input type="text" id="base64Input" placeholder="Введите Base64...">
+        <button onclick="decodeBase64()">Расшифровать</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Генерация звёзд
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Декодировка Base64
+        function decodeBase64() {
+            const input = document.getElementById('base64Input').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            if (!input) {
+                resultDiv.innerHTML = `<p>⚠️ <strong>Введите код!</strong></p>`;
+            } else {
+                try {
+                    const decodedText = atob(input);
+                    resultDiv.innerHTML = `
+                        <p>✅ <strong>Результат:</strong></p>
+                        <p><strong>${decodedText}</strong></p>
+                    `;
+                } catch (e) {
+                    resultDiv.innerHTML = `<p>❌ <strong>Ошибка!</strong> Неверный Base64.</p>`;
+                }
+            }
+            resultDiv.classList.add('visible');
+        }
+
+        window.onload = createStars;
+    </script>
+</body>
+</html>
