@@ -11,9 +11,9 @@
     <div class="stars" id="stars"></div>
     <div class="container">
         <h1>🛸 Расшифровщик 3000 🛸</h1>
-        <p>Введите Base64-код для расшифровки:</p>
-        <input type="text" id="base64Input" placeholder="Введите Base64...">
-        <button onclick="decodeBase64()">Расшифровать</button>
+        <p>Введите шифр для расшифровки:</p>
+        <input type="text" id="secret_Input" placeholder="Введите шифр...">
+        <button onclick="secret_fun()">Расшифровать</button>
         <div id="result"></div>
     </div>
 
@@ -47,7 +47,7 @@
         }
 
         // Декодировка Base64
-        function decodeBase64() {
+        function secret_fun() {
             const input = document.getElementById('base64Input').value.trim();
             const resultDiv = document.getElementById('result');
 
