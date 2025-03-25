@@ -33,14 +33,26 @@
             }
         }
 
+        const CORRECT_KEY_HASH = '53023e7e1deab8de15d348625f0b16eebd1c4ff12f87016e121754c6f579b547';
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
         // Проверка ключа
-        function checkKey() {
-            const SECRET_KEY = "КОСМИЧЕСКИЙ42"; // Замените на свой ключ
+        async function checkKey() {
             const input = document.getElementById('keyInput').value.toUpperCase();
             const resultDiv = document.getElementById('result');
 
-            if (input === SECRET_KEY) {
-                window.location.href = "decoder.html"; // Переход на вторую страницу
+            // Вычисляем хеш введенного ключа
+            const inputHash = await sha256(input);
+
+            if (inputHash === CORRECT_KEY_HASH) {
+                window.location.href = "decoder.html";
             } else {
                 resultDiv.innerHTML = `<p>❌ <strong>Неверный ключ!</strong> Поищите другой :)</p>`;
                 resultDiv.classList.add('visible');
